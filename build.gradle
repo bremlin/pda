@@ -17,7 +17,8 @@ tasks.withType(JavaCompile) {
 repositories {
     mavenCentral()
     flatDir {
-        dirs 'D:\\GradleRepository'
+//        dirs 'D:\\GradleRepository'
+        dirs 'X:\\IdeaProject\\GradleRepository'
     }
 }
 
