@@ -1,0 +1,85 @@
+version '0.8'
+
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: "application"
+
+mainClassName = "pda.Main"
+
+sourceCompatibility = 1.8
+
+compileJava.options.encoding = 'UTF-8'
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+repositories {
+    mavenCentral()
+    flatDir {
+        dirs 'D:\\GradleRepository'
+    }
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+
+    compile name: 'commons-beanutils'
+    compile name: 'commons-collections'
+    compile name: 'commons-lang'
+    compile name: 'commons-logging'
+    compile name: 'commons-primitives-1.0'
+    compile name: 'intgserver'
+    compile name: 'jide-common'
+    compile name: 'jide-grids'
+    compile name: 'jms_1.1'
+    compile name: 'mail'
+    compile name: 'ojdbc6'
+    compile name: 'prm-ucr-5.0.0'
+    compile name: 'quartz-all-1.7.3'
+    compile name: 'sqljdbc'
+    compile name: 'ucm-11.1.1'
+    compile name: 'wstx-asl-3.1.2'
+
+
+//    testCompile group: 'com.microsoft.sqlserver', name: 'sqljdbc4', version: '4.0'
+    compile group: 'log4j', name: 'log4j', version: '1.2.17'
+    compile group: 'org.springframework', name: 'spring-core', version: '3.2.18.RELEASE'
+    compile group: 'org.springframework', name: 'spring-context', version: '3.2.18.RELEASE'
+    compile group: 'org.springframework', name: 'spring-beans', version: '3.2.18.RELEASE'
+    compile group: 'org.springframework', name: 'spring-web', version: '3.2.18.RELEASE'
+    compile group: 'org.springframework.security', name: 'spring-security-core', version: '3.2.10.RELEASE'
+    compile group: 'org.springframework.security', name: 'spring-security-config', version: '3.2.10.RELEASE'
+    compile group: 'org.springframework.security', name: 'spring-security-web', version: '3.2.10.RELEASE'
+    compile group: 'org.springframework', name: 'spring-webmvc', version: '3.2.18.RELEASE'
+    compile group: 'org.springframework', name: 'spring-oxm', version: '3.2.18.RELEASE'
+    compile group: 'org.springframework', name: 'spring-jca', version: '2.0.8'
+    compile group: 'org.springframework', name: 'spring-jdbc', version: '2.0.6'
+    compile group: 'org.springframework', name: 'spring-jms', version: '3.2.18.RELEASE'
+    compile group: 'org.springframework', name: 'spring-context-support', version: '3.2.18.RELEASE'
+    compile group: 'org.springframework', name: 'spring-dao', version: '2.0.8'
+
+
+}
+jar {
+    manifest {
+        attributes(
+                "Class-Path": configurations.compile.collect { it.getName() }.join(' '))
+    }
+}
+
+version = '1.0'
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+//create a single Jar with all dependencies
+task fatJar(type: Jar) {
+    manifest {
+        attributes 'Implementation-Title': 'Gradle Jar File Example',
+                'Implementation-Version': version,
+                'Main-Class': 'pda.Main'
+    }
+    baseName = project.name + '-all'
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
+}

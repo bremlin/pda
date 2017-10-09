@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pda.OpenProject">
+   <children>
+      <ToolBar layoutY="760.0" prefHeight="40.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+        <items>
+            <Pane HBox.hgrow="ALWAYS" />
+          <Button mnemonicParsing="false" onAction="#openProject" text="Открыть" />
+            <Button mnemonicParsing="false" onAction="#close" text="Отмена" />
+        </items>
+      </ToolBar>
+      <TreeView fx:id="projectTree" onMouseClicked="#clickProject" prefHeight="760.0" prefWidth="800.0" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+   </children>
+</AnchorPane>

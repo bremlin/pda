@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BootStrap xmlns:xalan="http://xml.apache.org/xslt">
+   <Database>
+      <URL>jdbc:sqlserver://sSQLphn1d:1433;database=EPPM;</URL>
+      <UserName>pubuser</UserName>
+      <Password>AE03106A053AE2F417948B5B24B35FE7EFD150EB9C25C4BA139A57717C4026F64782AE03</Password>
+      <Driver>com.microsoft.sqlserver.jdbc.SQLServerDriver</Driver>
+      <PublicGroupId>1</PublicGroupId>
+   </Database>
+   <CfgVersion>8.309</CfgVersion>
+   <Configurations>
+      <BRE name="PrimaveraP6EPPM8" instances="1" logDir="D:\P6IntegrationAPI\PrimaveraLogs"/>
+   </Configurations>
+</BootStrap>
