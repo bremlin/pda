@@ -1,16 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
 <AnchorPane prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pda.OpenProject">
-      <Pane prefHeight="40.0" prefWidth="800.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-            <Label layoutX="14.0" layoutY="12.0" text="Пожалуйста, выберите проект для проверки" />
-      </Pane>
-      <TreeView fx:id="projectTree" layoutY="40.0" onMouseClicked="#clickProject" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0" />
-      <ToolBar layoutY="760.0" prefHeight="40.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-            <Pane HBox.hgrow="ALWAYS" />
-          <Button mnemonicParsing="false" onAction="#openProject" text="Открыть" />
-            <Button mnemonicParsing="false" onAction="#close" text="Отмена" />
-      </ToolBar>
+    <children>
+        <Pane prefHeight="40.0" prefWidth="800.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <Label layoutX="14.0" layoutY="12.0" text="Пожалуйста, выберите проект для проверки" />
+            </children>
+        </Pane>
+        <TreeView fx:id="projectTree" layoutY="40.0" onMouseClicked="#clickProject" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0" />
+        <ToolBar layoutY="760.0" prefHeight="40.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+            <items>
+                <Pane HBox.hgrow="ALWAYS" />
+                <Button fx:id="openButton" mnemonicParsing="false" onAction="#openProject" text="Открыть" />
+                <Button mnemonicParsing="false" onAction="#close" text="Отмена" />
+            </items>
+        </ToolBar>
+    </children>
+
 </AnchorPane>

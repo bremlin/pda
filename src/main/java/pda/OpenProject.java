@@ -29,6 +29,8 @@ public class OpenProject {
         TreeItem<String> root = new TreeItem<>("Primavera");
         addEPSChild(root);
 
+        projectTree.setRoot(root);
+
 
         System.out.println("testInit");
     }
