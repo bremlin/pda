@@ -40,7 +40,7 @@ public class Controller {
             root = loader.getRoot();
             Stage stage = new Stage();
             stage.setTitle("Выберите проект");
-            stage.setScene(new Scene(root, 800, 800));
+            stage.setScene(new Scene(root, 900, 800));
             stage.showAndWait();
 
             System.out.println("get: " + openProject.getProjectId());

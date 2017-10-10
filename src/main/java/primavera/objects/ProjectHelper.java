@@ -10,7 +10,7 @@ import com.primavera.integration.network.NetworkException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class ProjectHelper extends HashMap<Integer, ArrayList<Project>> {
+public class ProjectHelper extends HashMap<Integer, ArrayList<PdaTreeItem>> {
 
     public ProjectHelper(Session session) {
         try {
@@ -18,13 +18,13 @@ public class ProjectHelper extends HashMap<Integer, ArrayList<Project>> {
                     "ObjectId", "Name", "Id", "ParentEPSObjectId"},
                     null, "ObjectId");
             while (iterator.hasNext()) {
-                Project project = iterator.next();
-                if (this.containsKey(project.getParentEPSObjectId().toInteger())) {
-                    this.get(project.getParentEPSObjectId().toInteger()).add(project);
+                PdaTreeItem project = new PdaTreeItem(iterator.next());
+                if (this.containsKey(project.getParentId())) {
+                    this.get(project.getParentId()).add(project);
                 } else {
-                    ArrayList<Project> newList = new ArrayList<>();
+                    ArrayList<PdaTreeItem> newList = new ArrayList<>();
                     newList.add(project);
-                    this.put(project.getParentEPSObjectId().toInteger(), newList);
+                    this.put(project.getParentId(), newList);
                 }
             }
         } catch (ServerException | NetworkException | BusinessObjectException e) {
@@ -32,7 +32,4 @@ public class ProjectHelper extends HashMap<Integer, ArrayList<Project>> {
         }
     }
 
-    public ArrayList<Project> getProjectsByEPS(Integer epsId) {
-        return this.get(epsId);
-    }
 }
