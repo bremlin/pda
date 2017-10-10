@@ -64,8 +64,8 @@ public class OpenProject implements Initializable {
 
     private void addProject(TreeItem node, Integer id) throws BusinessObjectException {
         Image projectImage = new Image(OpenProject.class.getResourceAsStream("../images/project.gif"));
-        if (openProjectHelper.getProjectHelper().containsKey(id)) {
-            for (PdaTreeItem project : openProjectHelper.getProjectHelper().get(id)) {
+        if (openProjectHelper.getProjectListHelper().containsKey(id)) {
+            for (PdaTreeItem project : openProjectHelper.getProjectListHelper().get(id)) {
                 TreeItem<PdaTreeItem> child = new TreeItem<>(project, new ImageView(projectImage));
                 node.getChildren().add(child);
             }

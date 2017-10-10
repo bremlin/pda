@@ -6,7 +6,7 @@ import primavera.connect.PrimConnect;
 public class OpenProjectHelper {
 
     private EPSHelper epsHelper;
-    private ProjectHelper projectHelper;
+    private ProjectListHelper projectListHelper;
 
     public OpenProjectHelper() {
 
@@ -15,7 +15,7 @@ public class OpenProjectHelper {
         try {
             primConnect.login();
             epsHelper = new EPSHelper(PrimConnect.sessionAdmin);
-            projectHelper = new ProjectHelper(PrimConnect.sessionAdmin);
+            projectListHelper = new ProjectListHelper(PrimConnect.sessionAdmin);
             primConnect.logout();
             System.out.println("OpenProjectHelper - END");
         } catch (PrimaveraException e) {
@@ -27,7 +27,7 @@ public class OpenProjectHelper {
         return epsHelper;
     }
 
-    public ProjectHelper getProjectHelper() {
-        return projectHelper;
+    public ProjectListHelper getProjectListHelper() {
+        return projectListHelper;
     }
 }

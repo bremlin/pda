@@ -53,6 +53,7 @@ public class Controller {
 
     private void fillDataProject(Integer projectObjectId) {
         dataProjectHelper = new DataProjectHelper(projectObjectId);
+
     }
 
     public void openProjectStructure(Event event) {
