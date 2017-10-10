@@ -12,6 +12,8 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class Controller {
+    DataProjectHelper dataProjectHelper;
+
     @FXML
     public Tab projectStructure;
     @FXML
@@ -43,10 +45,14 @@ public class Controller {
             stage.setScene(new Scene(root, 900, 800));
             stage.showAndWait();
 
-            System.out.println("get: " + openProject.getProjectId());
+            if (openProject.getProjectId() > 0) fillDataProject(openProject.getProjectId());
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private void fillDataProject(Integer projectObjectId) {
+        dataProjectHelper = new DataProjectHelper(projectObjectId);
     }
 
     public void openProjectStructure(Event event) {
