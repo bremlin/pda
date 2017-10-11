@@ -43,6 +43,7 @@ public class DataProjectHelper {
         if (wbsHelper.containsKey(parentId)) {
             for (WBS wbs : wbsHelper.get(parentId)) {
                 TreeItem<PdaTreeItem> node = new TreeItem<PdaTreeItem>(new PdaTreeItem(wbs));
+                parent.getChildren().add(node);
                 setWBSData(node, wbs.getObjectId().toInteger());
             }
         }
