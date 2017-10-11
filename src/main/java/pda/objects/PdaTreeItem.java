@@ -5,10 +5,15 @@ import com.primavera.integration.client.bo.BusinessObjectException;
 import com.primavera.integration.client.bo.object.Activity;
 import com.primavera.integration.client.bo.object.Project;
 import com.primavera.integration.client.bo.object.WBS;
+import javafx.beans.property.SimpleStringProperty;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class PdaTreeItem {
+
+    DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
 
     private Integer objectId;
     private Integer parentId;
@@ -64,19 +69,19 @@ public class PdaTreeItem {
         return parentId;
     }
 
-    public String getId() {
-        return id;
+    public SimpleStringProperty getSimpleId() {
+        return new SimpleStringProperty(id);
     }
 
-    public String getName() {
-        return name;
+    public SimpleStringProperty getSimpleName() {
+        return new SimpleStringProperty(name);
     }
 
-    public Date getStartDate() {
-        return startDate;
+    public SimpleStringProperty getSimpleStartDate() {
+        return new SimpleStringProperty(df.format(startDate));
     }
 
-    public Date getFinishDate() {
-        return finishDate;
+    public SimpleStringProperty getSimpleFinishDate() {
+        return new SimpleStringProperty(df.format(finishDate));
     }
 }

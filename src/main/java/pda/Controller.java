@@ -7,9 +7,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TreeItem;
-import javafx.scene.control.TreeTableView;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.TextFieldTreeTableCell;
 import javafx.stage.Stage;
 import pda.objects.PdaTreeItem;
 
@@ -24,6 +23,18 @@ public class Controller {
     public TreeTableView factLessThenPlanCompleteTable;
     @FXML
     public TreeTableView notEqualsStartDateTable;
+    @FXML
+    TreeTableColumn<PdaTreeItem, String> idColumn;
+    @FXML
+    TreeTableColumn<PdaTreeItem, String> nameColumn;
+    @FXML
+    TreeTableColumn<PdaTreeItem, String> startColumn;
+    @FXML
+    TreeTableColumn<PdaTreeItem, String> finishColumn;
+    @FXML
+    TreeTableColumn<PdaTreeItem, String> planStartColumn;
+    @FXML
+    TreeTableColumn<PdaTreeItem, String> planFinishColumn;
 
     DataProjectHelper dataProjectHelper;
 
@@ -59,6 +70,7 @@ public class Controller {
             stage.showAndWait();
 
             if (openProject.getProjectId() > 0) fillDataProject(openProject.getProjectId());
+            columnSettings();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -72,7 +84,6 @@ public class Controller {
         } catch (BusinessObjectException e) {
             e.printStackTrace();
         }
-
         structureTable.setRoot(root);
     }
 
@@ -90,5 +101,34 @@ public class Controller {
 
     public void openNotEqualsStartDate(Event event) {
 
+    }
+
+    private void columnSettings() {
+        idColumn.setCellValueFactory(param -> param.getValue().getValue().getSimpleId());
+        nameColumn.setCellValueFactory(param -> param.getValue().getValue().getSimpleName());
+        startColumn.setCellValueFactory(param -> param.getValue().getValue().getSimpleStartDate());
+        finishColumn.setCellValueFactory(param -> param.getValue().getValue().getSimpleFinishDate());
+//        startColumn.setCellValueFactory(param -> param.getValue().getValue().getStartDate());
+//        finishColumn.setCellValueFactory(param -> param.getValue().getValue().getFinishDate());
+
+//        percentComplete.setOnEditCommit(event -> {
+//            TreeItem<TreeTableElement> currentEditStep = treeTableView.getTreeItem(event.getTreeTablePosition().getRow());
+//            if (currentEditStep.getValue().getElementType() == ItemType.Step) {
+//                currentEditStep.getValue().setPercent(event.getNewValue());
+//                sqlController.insertPercentComplete(currentEditStep.getValue().getObjectId(), event.getNewValue());
+//            }
+//        });
+
+//        treeTableView.setRowFactory(tv -> new TreeTableRow<TreeTableElement>() {
+//            @Override
+//            public void updateItem(TreeTableElement item, boolean empty) {
+//                super.updateItem(item, empty) ;
+//                if (item == null) {
+//                    addStyles(null, getStyleClass());
+//                } else {
+//                    addStyles(item.getElementType(), getStyleClass());
+//                }
+//            }
+//        });
     }
 }
