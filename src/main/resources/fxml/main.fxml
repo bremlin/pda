@@ -35,12 +35,12 @@
                      <children>
                         <TreeTableView fx:id="structureTable" prefHeight="882.0" prefWidth="1800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                           <columns>
-                            <TreeTableColumn fx:id="idColumn" prefWidth="75.0" text="Id" />
-                            <TreeTableColumn fx:id="nameColumn" prefWidth="75.0" text="Наименование" />
-                              <TreeTableColumn fx:id="startColumn" prefWidth="75.0" text="Начало" />
-                              <TreeTableColumn fx:id="finishColumn" prefWidth="75.0" text="Окончание" />
-                              <TreeTableColumn fx:id="planStartColumn" prefWidth="75.0" text="План. начало" />
-                              <TreeTableColumn fx:id="planFinishColumn" prefWidth="75.0" text="План. окончание" />
+                            <TreeTableColumn fx:id="idColumn" minWidth="100.0" prefWidth="120.0" text="Id" />
+                            <TreeTableColumn fx:id="nameColumn" minWidth="300.0" prefWidth="800.0" text="Наименование" />
+                              <TreeTableColumn fx:id="startColumn" minWidth="50.0" prefWidth="90.0" text="Начало" />
+                              <TreeTableColumn fx:id="finishColumn" minWidth="50.0" prefWidth="90.0" text="Окончание" />
+                              <TreeTableColumn fx:id="planStartColumn" minWidth="50.0" prefWidth="90.0" text="План. начало" />
+                              <TreeTableColumn fx:id="planFinishColumn" minWidth="50.0" prefWidth="90.0" text="План. окончание" />
                           </columns>
                         </TreeTableView>
                      </children></AnchorPane>
