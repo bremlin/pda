@@ -24,6 +24,8 @@ public class PdaTreeItem {
     private Date startDate;
     private Date finishDate;
 
+    private SimpleStringProperty EMPTY = new SimpleStringProperty("");
+
     public PdaTreeItem(BusinessObject businessObject) {
 
         try {
@@ -78,10 +80,18 @@ public class PdaTreeItem {
     }
 
     public SimpleStringProperty getSimpleStartDate() {
-        return new SimpleStringProperty(df.format(startDate));
+        if (finishDate!= null) {
+            return new SimpleStringProperty(df.format(startDate));
+        } else {
+            return EMPTY;
+        }
     }
 
     public SimpleStringProperty getSimpleFinishDate() {
-        return new SimpleStringProperty(df.format(finishDate));
+        if (finishDate!= null) {
+            return new SimpleStringProperty(df.format(finishDate));
+        } else {
+            return EMPTY;
+        }
     }
 }

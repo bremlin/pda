@@ -17,7 +17,7 @@ public class WBSHelper extends HashMap<Integer, ArrayList<WBS>> {
     public WBSHelper(Project project) {
         try {
             BOIterator<WBS> iterator = project.loadAllWBS(new String[] {
-                    "Code", "ObjectId", "ParentObjectId", "Name"
+                    "Code", "ObjectId", "ParentObjectId", "Name", "StartDate", "FinishDate"
             }, null, "SequenceNumber");
             while (iterator.hasNext()) {
                 WBS wbs = iterator.next();
