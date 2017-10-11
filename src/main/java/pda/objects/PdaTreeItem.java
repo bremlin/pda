@@ -25,6 +25,7 @@ public class PdaTreeItem {
     private Date finishDate;
 
     private SimpleStringProperty EMPTY = new SimpleStringProperty("");
+    private ItemType type;
 
     public PdaTreeItem(BusinessObject businessObject) {
 
@@ -39,6 +40,7 @@ public class PdaTreeItem {
                 this.name = wbs.getName();
                 this.startDate = wbs.getStartDate();
                 this.finishDate = wbs.getFinishDate();
+                this.type = ItemType.Wbs;
 
             } else if (businessObject instanceof Activity) {
                 Activity activity = (Activity) businessObject;
@@ -48,6 +50,7 @@ public class PdaTreeItem {
                 this.name = activity.getName();
                 this.startDate = activity.getStartDate();
                 this.finishDate = activity.getFinishDate();
+                this.type = ItemType.Activity;
 
             } else if (businessObject instanceof Project) {
                 Project project = (Project) businessObject;
@@ -57,6 +60,7 @@ public class PdaTreeItem {
                 this.name = project.getName();
                 this.startDate = project.getStartDate();
                 this.finishDate = project.getFinishDate();
+                this.type = ItemType.Project;
             }
         } catch (BusinessObjectException e) {
             e.printStackTrace();
@@ -93,5 +97,9 @@ public class PdaTreeItem {
         } else {
             return EMPTY;
         }
+    }
+
+    public ItemType getType() {
+        return type;
     }
 }

@@ -1,6 +1,7 @@
 package pda;
 
 import com.primavera.integration.client.bo.BusinessObjectException;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -10,6 +11,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.TextFieldTreeTableCell;
 import javafx.stage.Stage;
+import pda.objects.ItemType;
 import pda.objects.PdaTreeItem;
 
 import java.io.IOException;
@@ -119,16 +121,24 @@ public class Controller {
 //            }
 //        });
 
-//        treeTableView.setRowFactory(tv -> new TreeTableRow<TreeTableElement>() {
-//            @Override
-//            public void updateItem(TreeTableElement item, boolean empty) {
-//                super.updateItem(item, empty) ;
-//                if (item == null) {
-//                    addStyles(null, getStyleClass());
-//                } else {
-//                    addStyles(item.getElementType(), getStyleClass());
-//                }
-//            }
-//        });
+        structureTable.setRowFactory(tv -> new TreeTableRow<PdaTreeItem>() {
+            @Override
+            public void updateItem(PdaTreeItem item, boolean empty) {
+                super.updateItem(item, empty) ;
+                if (item == null) {
+                    addStyles(null, getStyleClass());
+                } else {
+                    addStyles(item.getType(), getStyleClass());
+                }
+            }
+        });
+    }
+
+    private void addStyles(ItemType type, ObservableList<String> styleClass) {
+        styleClass.clear();
+        styleClass.add("cell");
+        styleClass.add("indexed-cell");
+        styleClass.add("tree-table-row-cell");
+        if (type!= null) styleClass.add(type.getStyle());
     }
 }
