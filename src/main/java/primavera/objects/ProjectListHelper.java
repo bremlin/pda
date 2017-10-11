@@ -10,7 +10,7 @@ import com.primavera.integration.network.NetworkException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class ProjectListHelper extends HashMap<Integer, ArrayList<PdaTreeItem>> {
+public class ProjectListHelper extends HashMap<Integer, ArrayList<OpenProjectTreeItem>> {
 
     public ProjectListHelper(Session session) {
         try {
@@ -18,11 +18,11 @@ public class ProjectListHelper extends HashMap<Integer, ArrayList<PdaTreeItem>> 
                     "ObjectId", "Name", "Id", "ParentEPSObjectId"},
                     null, "ObjectId");
             while (iterator.hasNext()) {
-                PdaTreeItem project = new PdaTreeItem(iterator.next());
+                OpenProjectTreeItem project = new OpenProjectTreeItem(iterator.next());
                 if (this.containsKey(project.getParentId())) {
                     this.get(project.getParentId()).add(project);
                 } else {
-                    ArrayList<PdaTreeItem> newList = new ArrayList<>();
+                    ArrayList<OpenProjectTreeItem> newList = new ArrayList<>();
                     newList.add(project);
                     this.put(project.getParentId(), newList);
                 }

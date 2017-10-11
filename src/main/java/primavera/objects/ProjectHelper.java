@@ -14,7 +14,8 @@ public class ProjectHelper {
     public ProjectHelper(Session session, Integer objectId) {
         try {
             BOIterator<Project> iterator = session.getGlobalObjectManager().loadProjects(new String[] {
-                    "WBSObjectId", "Name", "Id"}, "ObjectId = " + objectId, null);
+                    "WBSObjectId", "Name", "Id", "StartDate", "FinishDate", "ObjectId"},
+                    "ObjectId = " + objectId, null);
             while (iterator.hasNext()) project = iterator.next();
         } catch (ServerException | NetworkException | BusinessObjectException e) {
             e.printStackTrace();

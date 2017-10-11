@@ -5,7 +5,7 @@ import com.primavera.integration.client.bo.BusinessObjectException;
 import com.primavera.integration.client.bo.object.EPS;
 import com.primavera.integration.client.bo.object.Project;
 
-public class PdaTreeItem {
+public class OpenProjectTreeItem {
 
     private Integer parentId;
     private Integer objectId;
@@ -15,7 +15,7 @@ public class PdaTreeItem {
 
     private int type;
 
-    public PdaTreeItem(BusinessObject businessObject) throws BusinessObjectException {
+    public OpenProjectTreeItem(BusinessObject businessObject) throws BusinessObjectException {
         if (businessObject instanceof EPS) {
             EPS eps = (EPS) businessObject;
             if (eps.getParentObjectId()!= null) {

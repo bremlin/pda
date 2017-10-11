@@ -1,5 +1,6 @@
 package pda;
 
+import com.primavera.integration.client.bo.BusinessObjectException;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -7,11 +8,23 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Tab;
+import javafx.scene.control.TreeItem;
+import javafx.scene.control.TreeTableView;
 import javafx.stage.Stage;
+import pda.objects.PdaTreeItem;
 
 import java.io.IOException;
 
 public class Controller {
+    @FXML
+    public TreeTableView structureTable;
+    @FXML
+    public TreeTableView factMoreThenPlanTable;
+    @FXML
+    public TreeTableView factLessThenPlanCompleteTable;
+    @FXML
+    public TreeTableView notEqualsStartDateTable;
+
     DataProjectHelper dataProjectHelper;
 
     @FXML
@@ -53,7 +66,14 @@ public class Controller {
 
     private void fillDataProject(Integer projectObjectId) {
         dataProjectHelper = new DataProjectHelper(projectObjectId);
+        TreeItem<PdaTreeItem> root = new TreeItem<>(new PdaTreeItem(dataProjectHelper.getProjectHelper().getProject()));
+        try {
+            dataProjectHelper.setStructureData(root, dataProjectHelper.getProjectHelper().getProject().getWBSObjectId().toInteger());
+        } catch (BusinessObjectException e) {
+            e.printStackTrace();
+        }
 
+        structureTable.setRoot(root);
     }
 
     public void openProjectStructure(Event event) {

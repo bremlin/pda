@@ -1,6 +1,10 @@
 package pda;
 
 import com.primavera.PrimaveraException;
+import com.primavera.integration.client.bo.BusinessObjectException;
+import com.primavera.integration.client.bo.object.WBS;
+import javafx.scene.control.TreeItem;
+import pda.objects.PdaTreeItem;
 import primavera.connect.PrimConnect;
 import primavera.objects.ActivityHelper;
 import primavera.objects.ProjectHelper;
@@ -22,13 +26,26 @@ public class DataProjectHelper {
             wbsHelper = new WBSHelper(projectHelper.getProject());
             activityHelper = new ActivityHelper(projectHelper.getProject());
 
-
-
         } catch (PrimaveraException e) {
             e.printStackTrace();
         }
+    }
 
+    public void setStructureData(TreeItem root, Integer rootId) {
+        try {
+            setWBSData(root, rootId);
+        } catch (BusinessObjectException e) {
+            e.printStackTrace();
+        }
+    }
 
+    private void setWBSData(TreeItem parent, Integer parentId) throws BusinessObjectException {
+        if (wbsHelper.containsKey(parentId)) {
+            for (WBS wbs : wbsHelper.get(parentId)) {
+                TreeItem<PdaTreeItem> node = new TreeItem<PdaTreeItem>(new PdaTreeItem(wbs));
+                setWBSData(node, wbs.getObjectId().toInteger());
+            }
+        }
     }
 
     public ProjectHelper getProjectHelper() {

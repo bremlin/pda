@@ -13,7 +13,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import primavera.objects.OpenProjectHelper;
-import primavera.objects.PdaTreeItem;
+import primavera.objects.OpenProjectTreeItem;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -43,7 +43,7 @@ public class OpenProject implements Initializable {
     }
 
     private void setAndClose(Event event) {
-        TreeItem<PdaTreeItem> selectedItem = (TreeItem<PdaTreeItem>) projectTree.getSelectionModel().getSelectedItem();
+        TreeItem<OpenProjectTreeItem> selectedItem = (TreeItem<OpenProjectTreeItem>) projectTree.getSelectionModel().getSelectedItem();
         if (selectedItem.getValue().getType() == 1) {
             selectProjectId = selectedItem.getValue().getObjectId();
             close(event);
@@ -53,8 +53,8 @@ public class OpenProject implements Initializable {
     private void addEPSChild(TreeItem node, Integer id) throws BusinessObjectException {
         Image epsImage = new Image(OpenProject.class.getResourceAsStream("../images/EPS.gif"));
         if (openProjectHelper.getEpsHelper().containsKey(id)) {
-            for (PdaTreeItem eps : openProjectHelper.getEpsHelper().get(id)) {
-                TreeItem<PdaTreeItem> child = new TreeItem<>(eps, new ImageView(epsImage));
+            for (OpenProjectTreeItem eps : openProjectHelper.getEpsHelper().get(id)) {
+                TreeItem<OpenProjectTreeItem> child = new TreeItem<>(eps, new ImageView(epsImage));
                 node.getChildren().add(child);
                 addProject(child, eps.getObjectId());
                 addEPSChild(child, eps.getObjectId());
@@ -65,8 +65,8 @@ public class OpenProject implements Initializable {
     private void addProject(TreeItem node, Integer id) throws BusinessObjectException {
         Image projectImage = new Image(OpenProject.class.getResourceAsStream("../images/project.gif"));
         if (openProjectHelper.getProjectListHelper().containsKey(id)) {
-            for (PdaTreeItem project : openProjectHelper.getProjectListHelper().get(id)) {
-                TreeItem<PdaTreeItem> child = new TreeItem<>(project, new ImageView(projectImage));
+            for (OpenProjectTreeItem project : openProjectHelper.getProjectListHelper().get(id)) {
+                TreeItem<OpenProjectTreeItem> child = new TreeItem<>(project, new ImageView(projectImage));
                 node.getChildren().add(child);
             }
         }
